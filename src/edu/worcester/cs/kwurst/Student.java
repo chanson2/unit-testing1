@@ -20,6 +20,8 @@ package edu.worcester.cs.kwurst;
  * Represents a student record for the purposes of a degree audit.
  * 
  * @author Karl R. Wurst
+ * @author Chris Hanson
+ * @author Dana Perry
  * @version JUnit Lab
  */
 public class Student
@@ -219,7 +221,11 @@ public class Student
      * @return the student's remaining credits to graduate
      */
     public int getCurrentRemainingCr() {
-        return REQUIRED_CR - currentEarnedCr;
+        if(currentEarnedCr <= 120) {
+        	return REQUIRED_CR - currentEarnedCr;
+        }
+        else
+        	return 0;
     }
 
     /**
@@ -238,6 +244,6 @@ public class Student
      * @return whether the student is ready to graduate
      */
     public boolean readyToGraduate() {
-        return getCurrentRemainingCr() == 0 && gpa >= 2.0 && lascComplete && majorComplete;
+        return getCurrentRemainingCr() <= 0 && gpa >= 2.0 && lascComplete && majorComplete;
     }
 }
